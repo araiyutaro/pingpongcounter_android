@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PingPongCounter</string>
+
+    <string name="label_change_ends">CHANGE ENDS</string>
+    <string name="label_reset_scores">RESET SCORES</string>
+    <string name="label_reset_all">RESET ALL</string>
+    <string name="change_server">CHANGE SERVER</string>
+    <string name="et_player_a">playerA</string>
+    <string name="et_player_b">playerB</string>
+</resources>

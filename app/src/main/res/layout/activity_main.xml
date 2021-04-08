@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="jp.arai.pingpongcounter.MainViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_dark"
+        tools:context=".MainActivity"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        >
+
+
+        <TextView
+            android:id="@+id/pointA"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/black"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.incrementPointA()}"
+            android:text="@{viewModel.pointA.toString()}"
+            android:textColor="@android:color/white"
+            android:textSize="140sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/matchA"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            />
+
+        <TextView
+            android:id="@+id/matchA"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/black"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.incrementMatchA()}"
+            android:text="@{viewModel.matchA.toString()}"
+            android:textColor="@android:color/white"
+            android:textSize="100sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_change_server"
+            app:layout_constraintEnd_toStartOf="@+id/matchB"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@+id/pointA"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/matchB"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/black"
+            android:text="@{viewModel.matchB.toString()}"
+            android:textSize="100sp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:onClick="@{() -> viewModel.incrementMatchB()}"
+            app:layout_constraintBottom_toBottomOf="@+id/matchA"
+            app:layout_constraintEnd_toStartOf="@+id/pointB"
+            app:layout_constraintStart_toEndOf="@+id/matchA"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="2"
+            />
+
+        <TextView
+            android:id="@+id/pointB"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/black"
+            android:text="@{viewModel.pointB.toString()}"
+            android:textSize="100sp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:onClick="@{() -> viewModel.incrementPointB()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/matchB"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="3"
+            />
+
+        <Button
+            android:id="@+id/btn_change_server"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red_900"
+            android:onClick="@{() -> viewModel.changeFirstServer()}"
+            android:text="@string/change_server"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@id/btn_change_ends"
+            app:layout_constraintEnd_toStartOf="@+id/pointB"
+            app:layout_constraintStart_toEndOf="@+id/pointA"
+            app:layout_constraintTop_toBottomOf="@+id/matchA"
+            />
+
+        <Button
+            android:id="@+id/btn_change_ends"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red_900"
+            android:onClick="@{() -> viewModel.changeEnds()}"
+            android:text="@string/label_change_ends"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btn_reset_scores"
+            app:layout_constraintEnd_toStartOf="@+id/pointB"
+            app:layout_constraintStart_toEndOf="@+id/pointA"
+            app:layout_constraintTop_toBottomOf="@+id/btn_change_server"
+            />
+
+        <Button
+            android:id="@+id/btn_reset_scores"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/label_reset_scores"
+            android:background="@color/red_900"
+            android:textColor="@android:color/white"
+            android:onClick="@{() -> viewModel.resetScores()}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_reset_all"
+            app:layout_constraintEnd_toStartOf="@+id/pointB"
+            app:layout_constraintStart_toEndOf="@+id/pointA"
+            app:layout_constraintTop_toBottomOf="@+id/btn_change_ends"
+            />
+
+        <Button
+            android:id="@+id/btn_reset_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/label_reset_all"
+            android:background="@color/red_900"
+            android:textColor="@android:color/white"
+            android:onClick="@{() -> viewModel.resetAll()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pointB"
+            app:layout_constraintStart_toEndOf="@+id/pointA"
+            app:layout_constraintTop_toBottomOf="@+id/btn_reset_scores"
+            />
+
+        <View
+            android:id="@+id/serveA"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_marginBottom="32dp"
+
+            android:background="@drawable/oval_background"
+            android:visibility="@{viewModel.serverIsA ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/pointA"
+            app:layout_constraintEnd_toEndOf="@id/pointA"
+            app:layout_constraintStart_toStartOf="@+id/pointA"
+            />
+
+        <View
+            android:id="@+id/serveB"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_marginBottom="32dp"
+
+            android:background="@drawable/oval_background"
+            android:visibility="@{viewModel.serverIsA ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/pointB"
+
+            app:layout_constraintEnd_toEndOf="@+id/pointB"
+            app:layout_constraintStart_toStartOf="@id/pointB"
+            />
+
+        <EditText
+            android:id="@+id/et_playerA"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@{viewModel.playerNameA.toString()}"
+            android:textSize="20sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/pointA"
+            app:layout_constraintStart_toStartOf="@+id/pointA"
+            app:layout_constraintTop_toTopOf="@+id/pointA"
+            app:theme="@style/EditTextStyle"
+            />
+
+        <EditText
+            android:id="@+id/et_playerB"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@{viewModel.playerNameB}"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/pointB"
+            app:layout_constraintStart_toStartOf="@+id/pointB"
+            app:layout_constraintTop_toTopOf="@+id/pointB"
+            app:theme="@style/EditTextStyle"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
