@@ -1,10 +1,13 @@
 package jp.arai.pingpongcounter
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.MotionEvent
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -26,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         checkEditTexts()
 
         observeViewModel()
+
+        setSwipeListener()
     }
 
 
@@ -95,5 +100,101 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    var y1: Float = 0f
+    var y2: Float = 0f
+    private val MIN_DISTANCE = 150
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setSwipeListener() {
+        binding.pointA.setOnTouchListener { _, motionEvent ->
+            when(motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    y1 = motionEvent.y
+                }
+                MotionEvent.ACTION_UP -> {
+                    y2 = motionEvent.y
+                    val deltaY = y2- y1
+
+                    if (Math.abs(deltaY) > MIN_DISTANCE) {
+                        if (y1 > y2) {
+                            viewModel.incrementPointA()
+                        } else {
+                            viewModel.decrementPointA()
+                        }
+                    } else {
+                        // Do nothing
+                    }
+                }
+            }
+            true
+        }
+        binding.pointB.setOnTouchListener { _, motionEvent ->
+            when(motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    y1 = motionEvent.y
+                }
+                MotionEvent.ACTION_UP -> {
+                    y2 = motionEvent.y
+                    val deltaY = y2- y1
+
+                    if (Math.abs(deltaY) > MIN_DISTANCE) {
+                        if (y1 > y2) {
+                            viewModel.incrementPointB()
+                        } else {
+                            viewModel.decrementPointB()
+                        }
+                    } else {
+                        // Do nothing
+                    }
+                }
+            }
+            true
+        }
+        binding.matchA.setOnTouchListener { _, motionEvent ->
+            when(motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    y1 = motionEvent.y
+                }
+                MotionEvent.ACTION_UP -> {
+                    y2 = motionEvent.y
+                    val deltaY = y2- y1
+
+                    if (Math.abs(deltaY) > MIN_DISTANCE) {
+                        if (y1 > y2) {
+                            viewModel.incrementMatchA()
+                        } else {
+                            viewModel.decrementMatchA()
+                        }
+                    } else {
+                        // Do nothing
+                    }
+                }
+            }
+            true
+        }
+        binding.matchB.setOnTouchListener { _, motionEvent ->
+            when(motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    y1 = motionEvent.y
+                }
+                MotionEvent.ACTION_UP -> {
+                    y2 = motionEvent.y
+                    val deltaY = y2- y1
+
+                    if (Math.abs(deltaY) > MIN_DISTANCE) {
+                        if (y1 > y2) {
+                            viewModel.incrementMatchB()
+                        } else {
+                            viewModel.decrementMatchB()
+                        }
+                    } else {
+                        // Do nothing
+                    }
+                }
+            }
+            true
+        }
     }
 }
