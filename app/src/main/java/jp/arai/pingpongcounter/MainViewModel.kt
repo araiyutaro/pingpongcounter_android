@@ -96,15 +96,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun decrementPointA() {
+        if (pointA.value!! <= 0) return
         pointA.value = pointA.value!! - 1
         checkServer()
     }
 
     fun decrementPointB() {
+        if (pointB.value!! <= 0) return
         pointB.value = pointB.value!! - 1
         checkServer()
     }
 
+    fun decrementMatchA() {
+        if (matchA.value!! <= 0) return
+        matchA.value = matchA.value!! - 1
+    }
+
+    fun decrementMatchB() {
+        if (matchB.value!! <= 0) return
+        matchB.value = matchB.value!! - 1
+    }
 
     private fun checkServer() {
         val sum = pointA.value!! + pointB.value!!
